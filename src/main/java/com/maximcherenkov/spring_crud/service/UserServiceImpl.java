@@ -21,13 +21,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public User show(int id) {
         return userDAO.show(id);
     }
@@ -40,8 +40,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void update(int id, User user) {
-        userDAO.update(id, user);
+    public void update(User user) {
+        userDAO.update(user);
     }
 
     @Override
