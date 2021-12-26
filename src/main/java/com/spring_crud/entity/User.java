@@ -1,4 +1,4 @@
-package com.maximcherenkov.spring_crud.entity;
+package com.spring_crud.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;

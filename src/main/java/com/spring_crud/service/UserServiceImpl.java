@@ -1,8 +1,8 @@
-package com.maximcherenkov.spring_crud.service;
+package com.spring_crud.service;
 
 
-import com.maximcherenkov.spring_crud.dao.UserDAO;
-import com.maximcherenkov.spring_crud.entity.User;
+import com.spring_crud.dao.UserDAO;
+import com.spring_crud.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

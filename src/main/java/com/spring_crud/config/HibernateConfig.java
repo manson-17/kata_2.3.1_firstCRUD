@@ -1,4 +1,4 @@
-package com.maximcherenkov.spring_crud.config;
+package com.spring_crud.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

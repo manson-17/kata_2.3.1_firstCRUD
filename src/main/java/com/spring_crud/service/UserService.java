@@ -1,6 +1,6 @@
-package com.maximcherenkov.spring_crud.service;
+package com.spring_crud.service;
 
-import com.maximcherenkov.spring_crud.entity.User;
+import com.spring_crud.entity.User;
 
 import java.util.List;
 

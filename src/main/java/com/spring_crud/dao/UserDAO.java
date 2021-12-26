@@ -1,6 +1,6 @@
-package com.maximcherenkov.spring_crud.dao;
+package com.spring_crud.dao;
 
-import com.maximcherenkov.spring_crud.entity.User;
+import com.spring_crud.entity.User;
 
 import java.util.List;
 

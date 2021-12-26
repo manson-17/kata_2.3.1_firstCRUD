@@ -1,7 +1,7 @@
-package com.maximcherenkov.spring_crud.controller;
+package com.spring_crud.controller;
 
-import com.maximcherenkov.spring_crud.entity.User;
-import com.maximcherenkov.spring_crud.service.UserService;
+import com.spring_crud.entity.User;
+import com.spring_crud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

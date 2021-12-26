@@ -1,7 +1,6 @@
-package com.maximcherenkov.spring_crud.dao;
+package com.spring_crud.dao;
 
-import com.maximcherenkov.spring_crud.entity.User;
-import org.springframework.stereotype.Component;
+import com.spring_crud.entity.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
