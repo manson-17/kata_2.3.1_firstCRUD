@@ -25,7 +25,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @PropertySource("classpath:db.properties")
-@ComponentScan("com.maximcherenkov.spring_crud")
+@ComponentScan("com.spring_crud")
 public class HibernateConfig {
 
     @Autowired
@@ -47,7 +47,7 @@ public class HibernateConfig {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setJpaVendorAdapter(getJpaVendorAdapter());
         factoryBean.setDataSource(dataSource());
-        factoryBean.setPackagesToScan("com.maximcherenkov.spring_crud.entity");
+        factoryBean.setPackagesToScan("com.spring_crud.entity");
         factoryBean.setJpaProperties(hibernateProperties());
 
         return factoryBean;
