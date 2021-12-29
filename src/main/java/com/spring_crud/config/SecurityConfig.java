@@ -13,19 +13,28 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.spring_crud.config.handler.LoginSuccessHandler;
 
 
-
-
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    private LoginSuccessHandler loginSuccessHandler;
     private UserDetailServiceImpl userDetailService;
 
     @Autowired
-    public SecurityConfig(LoginSuccessHandler loginSuccessHandler, UserDetailServiceImpl userDetailService) {
-        this.loginSuccessHandler = loginSuccessHandler;
+    public SecurityConfig(UserDetailServiceImpl userDetailService) {
         this.userDetailService = userDetailService;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        authenticationProvider.setUserDetailsService(userDetailService);
+        return authenticationProvider;
     }
 
     @Override
@@ -33,26 +42,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailService);
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-        return authenticationProvider;
-    }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.formLogin()
-                .successHandler(loginSuccessHandler)
-                .permitAll()
+                .successHandler(new LoginSuccessHandler())
                 .and()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
+                .anyRequest().authenticated()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/");
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout");
 
 
 //        http
@@ -64,8 +67,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/hello").access("hasAnyRole('ADMIN')").anyRequest().authenticated();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }

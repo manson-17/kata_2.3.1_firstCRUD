@@ -4,6 +4,7 @@ package com.spring_crud.service;
 import com.spring_crud.dao.UserDAO;
 import com.spring_crud.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,11 +14,14 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
 
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
+
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserDAO userDAO) {
+    public UserServiceImpl(UserDAO userDAO, PasswordEncoder passwordEncoder) {
         this.userDAO = userDAO;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -35,12 +39,14 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDAO.save(user);
     }
 
     @Override
     @Transactional
     public void update(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDAO.update(user);
     }
 
@@ -51,6 +57,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User getUserByName(String name) {
         return userDAO.getUserByName(name);
     }

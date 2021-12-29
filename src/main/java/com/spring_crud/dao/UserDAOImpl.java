@@ -8,30 +8,30 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl implements UserDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public List<User> getAllUsers() {
-       return entityManager.createQuery("from User ", User.class).getResultList();
+        return entityManager.createQuery("from User ", User.class).getResultList();
     }
 
     @Override
     public User show(int id) {
-       return entityManager.find(User.class, id);
+        return entityManager.find(User.class, id);
     }
 
     @Override
     public void save(User user) {
         entityManager.persist(user);
+
     }
 
     @Override
     public void update(User user) {
-       entityManager.merge(user);
-
+        entityManager.merge(user);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public User getUserByName(String name) {
-       return entityManager.createQuery("from User where username = :userName", User.class).setParameter("userName", name).getSingleResult();
+        return entityManager.createQuery("from User where username = :userName", User.class).setParameter("userName", name).getSingleResult();
 
     }
 

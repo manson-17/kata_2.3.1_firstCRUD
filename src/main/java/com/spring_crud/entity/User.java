@@ -19,39 +19,34 @@ public class User implements UserDetails {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     private String name;
 
-    @Column(name = "user_surname")
-    @NotEmpty(message = "Surname should not be empty")
-    @Size(min = 2, max = 30, message = "Surname should be between 2 and 30 characters")
-    private String surname;
-
     @Column(name = "password")
+    @NotEmpty(message = "Password should not be empty")
+    @Size(min = 4, max = 130, message = "Password should be between 4 and 30 characters")
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
 
-    public User(int id, String name, String surname, String password, Set<Role> roles) {
+    public User(int id, String name, String password, Set<Role> roles) {
         this.id = id;
         this.name = name;
-        this.surname = surname;
         this.password = password;
         this.roles = roles;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -66,15 +61,6 @@ public class User implements UserDetails {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
 
     public void setPassword(String password) {
         this.password = password;
@@ -128,7 +114,6 @@ public class User implements UserDetails {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
                 '}';
