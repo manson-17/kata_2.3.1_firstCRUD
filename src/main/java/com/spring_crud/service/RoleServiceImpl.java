@@ -23,10 +23,7 @@ public class RoleServiceImpl implements RoleService {
         return roleDAO.getAllRoles();
     }
 
-    @Override
-    public Role getRoleByName(String name) {
-        return roleDAO.getRoleByName(name);
-    }
+
 
     @Override
     public HashSet<Role> getRolesByNames(String[] names) {

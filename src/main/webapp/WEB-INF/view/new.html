@@ -17,7 +17,7 @@
     <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Surname Error</div>
     <br>
     <div th:each="role : ${roles}">
-        <input type="checkbox" name="roleNames" th:value="${role.name}" th:text="${role.name}" th:checked="${role.name} == 'USER'"/>
+        <input type="checkbox" name="roleNames" th:value="${role.name}" th:text="${role.name}" th:checked="${role.name} == USER"/>
     </div>
     <br>
     <input type="submit" value="Create!"/>

@@ -1,4 +1,4 @@
-package com.spring_crud.config;
+package com.spring_crud.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

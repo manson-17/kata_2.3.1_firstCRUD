@@ -1,4 +1,4 @@
-package com.spring_crud.config;
+package com.spring_crud.security;
 
 import com.spring_crud.service.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
