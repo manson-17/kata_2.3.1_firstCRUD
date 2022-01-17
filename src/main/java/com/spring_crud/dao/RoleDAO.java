@@ -8,6 +8,4 @@ public interface RoleDAO {
 
     List<Role> getAllRoles();
 
-    HashSet<Role> getRolesByNames(String[] names);
-
 }

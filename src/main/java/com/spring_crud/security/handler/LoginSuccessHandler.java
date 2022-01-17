@@ -1,4 +1,4 @@
-package com.spring_crud.config.handler;
+package com.spring_crud.security.handler;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;

@@ -22,15 +22,4 @@ public class RoleDAOImpl implements RoleDAO {
         return entityManager.createQuery("from Role", Role.class).getResultList();
     }
 
-
-    @Override
-    public HashSet<Role> getRolesByNames(String[] names) {
-        Set<Role> roleSet = Arrays.stream(names).map(name -> entityManager
-                        .createQuery("from Role where name = :roleName", Role.class).setParameter("roleName", name)
-                        .getSingleResult())
-                        .collect(Collectors.toSet());
-
-        return (HashSet<Role>) roleSet;
-
-    }
 }
