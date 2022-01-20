@@ -31,12 +31,13 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public HashSet<Role> getRolesByNames(String[] names) {
         Set<Role> roleSet = new HashSet<>();
-        for (String name : names)
-        if (name.equals("ROLE_ADMIN")){
-            roleSet.add(getAllRoles().get(0));
-        }
-        else if (name.equals("ROLE_USER")){
-            roleSet.add(getAllRoles().get(1));
+        List<Role> allRoles = getAllRoles();
+        for(Role role: allRoles) {
+            for (String name : names) {
+                if (name.equals(role.getName())) {
+                    roleSet.add(role);
+                }
+            }
         }
         return (HashSet<Role>) roleSet;
     }
