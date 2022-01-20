@@ -34,7 +34,6 @@ public class RoleServiceImpl implements RoleService {
         List<Role> allRoles = getAllRoles();
         for (String name : names) {
             for(Role role: allRoles) {
-
                 if (name.equals(role.getName())) {
                     roleSet.add(role);
                 }
